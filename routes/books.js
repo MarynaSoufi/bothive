@@ -5,6 +5,7 @@ import {
   rentTheBook,
   returnTheBook,
   getAllRentedBooks,
+  getAllUserRents,
 } from '../controllers/books.js';
 
 const router = new Router();
@@ -28,5 +29,9 @@ router.put('/return/:bookId/:userId', returnTheBook);
 //GetAllRentedBooks
 //http://localhost:3002/api/books/rent
 router.get('/rent', getAllRentedBooks);
+
+//Users rent history of specific book
+//http://localhost:3002/api/books/id/rent
+router.get('/:id/rent', getAllUserRents);
 
 export default router;

@@ -135,3 +135,18 @@ export const getAllRentedBooks = async (req, res) => {
     res.json({ message: 'Something went wrong!' });
   }
 };
+
+//getAllUserRents
+export const getAllUserRents = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+
+    if (!book) {
+      return res.json({ message: 'There is no book!' });
+    }
+
+    return res.json(book.rents);
+  } catch (error) {
+    res.json({ message: 'Something went wrong!' });
+  }
+};
