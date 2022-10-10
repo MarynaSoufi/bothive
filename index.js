@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import userRoute from './routes/users.js';
+import bookRoute from './routes/books.js';
 
 const app = express();
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.json());
 
 //Routes
 app.use('/api/users', userRoute);
+app.use('/api/books', bookRoute);
 
 //Connect to mongodb end start
 async function start() {
