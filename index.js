@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+import userRoute from './routes/users.js';
+
 const app = express();
 dotenv.config();
 
@@ -15,6 +17,9 @@ const DB_NAME = process.env.DB_NAME;
 //Middleware
 app.use(cors());
 app.use(express.json());
+
+//Routes
+app.use('/api/users', userRoute);
 
 //Connect to mongodb end start
 async function start() {
