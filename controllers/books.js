@@ -82,3 +82,42 @@ export const rentTheBook = async (req, res) => {
     res.json({ message: 'Something went wrong!' });
   }
 };
+
+//Renturn The Book
+export const returnTheBook = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const bookId = req.params.bookId;
+
+    const user = await User.findById(userId);
+    const book = await Book.findById(bookId);
+
+    if (book.isAvailable) {
+      return res.json({
+        message: 'You can not return this book. This book is available!',
+      });
+    }
+
+    book.isAvailable = true;
+    const now = Date.now();
+    book.actualEndRentDate = now;
+    book.rents[book.rents.length - 1].actualEndRentDate = now;
+
+    let rentToRelease = user.rents.filter(
+      (r) => !r.actualEndRentDate && r.bookId === bookId
+    );
+
+    if (rentToRelease.length > 1) {
+      throw new Error("There can't be more than one active rent for the book");
+    }
+
+    rentToRelease[0].actualEndRentDate = now;
+
+    await book.save();
+    await user.save();
+
+    return res.json({ book });
+  } catch (error) {
+    res.json({ message: 'Something went wrong!' });
+  }
+};

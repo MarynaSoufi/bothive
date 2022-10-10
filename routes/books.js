@@ -1,5 +1,10 @@
 import { Router } from 'express';
-import { createBook, getAllBooks, rentTheBook } from '../controllers/books.js';
+import {
+  createBook,
+  getAllBooks,
+  rentTheBook,
+  returnTheBook,
+} from '../controllers/books.js';
 
 const router = new Router();
 
@@ -14,5 +19,9 @@ router.get('/', getAllBooks);
 //Rent Book
 //http://localhost:3002/api/books/rent/bookId/userId
 router.put('/rent/:bookId/:userId', rentTheBook);
+
+//Return Book
+//http://localhost:3002/api/books/return/bookId/userId
+router.put('/return/:bookId/:userId', returnTheBook);
 
 export default router;
