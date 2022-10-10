@@ -6,7 +6,7 @@
 
 - npm install
 
-## DATABSE connection
+## DATABASE connection
 
 ---
 
