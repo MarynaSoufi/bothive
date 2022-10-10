@@ -1,1 +1,1 @@
-# bothive
+# bothive library
