@@ -121,3 +121,17 @@ export const returnTheBook = async (req, res) => {
     res.json({ message: 'Something went wrong!' });
   }
 };
+
+//getAllRentedBooks
+export const getAllRentedBooks = async (req, res) => {
+  try {
+    const books = await Book.find({ isAvailable: false });
+
+    if (!books || books.length < 1) {
+      return res.json({ message: 'There are no rented books' });
+    }
+    return res.json({ books });
+  } catch (error) {
+    res.json({ message: 'Something went wrong!' });
+  }
+};
