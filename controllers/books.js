@@ -15,3 +15,17 @@ export const createBook = async (req, res) => {
     res.json({ message: 'Something went wrong' });
   }
 };
+
+//getAllBooks
+export const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find().sort('-cretedAt');
+
+    if (!books) {
+      return res.json({ message: 'There are no Books' });
+    }
+    return res.json({ books });
+  } catch (error) {
+    res.json({ message: 'Something went wrong!' });
+  }
+};
