@@ -16,7 +16,7 @@
 
 ## Postman
 
-import Bothive.postman_collection.json file in Postman
+import Bothive.postman_collection.json file in Postman as a collection
 
 ## RUN
 
