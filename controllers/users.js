@@ -29,3 +29,18 @@ export const getAllUsers = async (req, res) => {
     res.json({ message: 'Something went wrong!' });
   }
 };
+
+//getAllUserRents
+export const getAllUserRents = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.json({ message: 'There is no User!' });
+    }
+
+    return res.json(user.rents);
+  } catch (error) {
+    res.json({ message: 'Something went wrong!' });
+  }
+};
